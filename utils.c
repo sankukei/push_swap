@@ -13,10 +13,15 @@
 #include "test.h"
 #include "libft/libft.h"
 
-void	sa(s_list *first, s_list *second)
+void	sa(s_list *head)
 {
-	if ((!first) || (!second))
+	s_list*	tmp;
+	tmp = malloc(sizeof(s_list));
+	if (!head || !tmp)
 		return ;
 
+	tmp = head;
+	head = head->next;
+	head->next = tmp;
 	ft_printf("sa\n");
 }
