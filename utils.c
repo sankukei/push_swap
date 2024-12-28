@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leothoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 13:36:53 by leothoma          #+#    #+#             */
-/*   Updated: 2024/12/27 13:36:53 by leothoma         ###   ########.fr       */
+/*   Created: 2024/12/28 18:15:57 by leothoma          #+#    #+#             */
+/*   Updated: 2024/12/28 18:15:57 by leothoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
+#include "test.h"
+#include "libft/libft.h"
 
-typedef struct stack
+void	sa(s_list *first, s_list *second)
 {
-	int	size;
-	int	top;
-	int	content;
-	struct	stack *next;
-} s_list;
+	if ((!first) || (!second))
+		return ;
 
-#endif
+	ft_printf("sa\n");
+}

@@ -13,7 +13,7 @@
 #include "test.h"
 #include "libft/libft.h"
 
-s_list	*ft_new(void *content)
+s_list	*ft_new(int content)
 {
 	s_list *stack;
 
@@ -49,25 +49,48 @@ void	ft_lstaddback(s_list **lst, s_list *new)
 		*lst = new;
 }
 
-s_list	**ft_init_list(int ac, char **av)
+s_list	*ft_init_list(char **av)
 {
-	s_list	**list;
+	s_list	*list;
 	s_list	*tmp;
 	int	i;
-	ac++;
+	int	val;
+
+	list = 0;
 	i = 1;
-	list = malloc(sizeof(s_list) * (ac - 1));
-	if (!list)
-		return (NULL);
 	while (av[i])
 	{
+		val = ft_atoi(av[i]);
+		tmp = ft_new(val);
+		if (!tmp)
+			return (NULL);
+
 		if (i == 1)
-			*list = ft_new(av[i]);
+			list = tmp;
 		else
-		{
-			tmp = ft_new(av[i]);
-			ft_lstaddback(list, tmp);
-		}
+			ft_lstaddback(&list, tmp);
+		i++;
+	}
+	return (list);
+}
+
+s_list	*ft_init_list_b(int ac)
+{
+	s_list	*list;
+	s_list	*tmp;
+	int	i;
+
+	list = 0;
+	i = 0;
+	while (i < ac - 1)
+	{
+		tmp = ft_new(0);
+		if (!tmp)
+			return (NULL);
+		if (i == 0)
+			list = tmp;
+		else
+			ft_lstaddback(&list, tmp);
 		i++;
 	}
 	return (list);
@@ -76,19 +99,39 @@ s_list	**ft_init_list(int ac, char **av)
 int	main(int ac, char **av)
 {
 	int	i;
-	s_list *stack_a = NULL;
-//	s_list *stack_b;
-//
+	int	a = 1;
+	s_list *stack_a;
+	s_list *stack_b;
+	stack_a = 0;
 	i = 1;
 	if (ac > 1)
-		stack_a = *ft_init_list(ac, av);
+	{
+		stack_a = ft_init_list(av);
+		stack_b = ft_init_list_b(ac);
+	}
 	else
-		ft_printf("Error");
+	{
+		ft_printf("Error\n");
+		return (1);
+	}
+
+	//AFFICHAGE STACK_A ET B
 	while (stack_a)
 	{
-		ft_printf("%s", stack_a->content);
+		int tmp = stack_a->content;
+		ft_printf("STACK A VALEUR [%d]: %d\n", a, tmp);
 		stack_a = stack_a->next;
-
+		a++;
+	}
+	ft_printf("\n");
+	a = 1;
+	while (stack_b)
+	{
+		int tmp = stack_b->content;
+		ft_printf("STACK B VALEUR [%d]: %d\n", a, tmp);
+		stack_b = stack_b->next;
+		a++;
 	}
 	return (0);
 }
+
