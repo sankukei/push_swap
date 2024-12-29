@@ -15,13 +15,36 @@
 
 void	sa(s_list *head)
 {
-	s_list*	tmp;
-	tmp = malloc(sizeof(s_list));
-	if (!head || !tmp)
-		return ;
+	int	tmp;
 
-	tmp = head;
-	head = head->next;
-	head->next = tmp;
+	if (!head)
+		return ;
+	tmp = head->content;
+	head->content = head->next->content;
+	head->next->content = tmp;
 	ft_printf("sa\n");
+}
+
+void	sb(s_list *head)
+{
+	int	tmp;
+
+	if (!head)
+		return ;
+	tmp = head->content;
+	head->content = head->next->content;
+	head->next->content = tmp;
+	ft_printf("sb\n");
+
+}
+
+void	ss(s_list *head_a, s_list *head_b)
+{
+	sa(head_a);
+	sb(head_b);
+}
+
+void	pa(s_list *head_a, s_list *head_b)
+{
+	
 }
