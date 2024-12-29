@@ -17,6 +17,7 @@ COMP = cc
 FLAGS = -Wall -Wextra -Werror -g3 -I ./
 
 SRC =	main.c \
+	utils.c \
 
 OBJS = ${SRC:.c=.o}
 

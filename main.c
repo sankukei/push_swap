@@ -74,20 +74,23 @@ s_list	*ft_init_list(char **av)
 	return (list);
 }
 
-s_list	*ft_init_list_b(int ac)
+s_list	*ft_init_list_b(int ac, char **av)
 {
 	s_list	*list;
 	s_list	*tmp;
 	int	i;
+//	int	val;
 
+	ac++;
 	list = 0;
 	i = 0;
-	while (i < ac - 1)
+	while (av[i])
 	{
-		tmp = ft_new(0);
+	//	val = ft_atoi(av[i]);
+		tmp = ft_new(i);
 		if (!tmp)
 			return (NULL);
-		if (i == 0)
+		if (i == 1)
 			list = tmp;
 		else
 			ft_lstaddback(&list, tmp);
@@ -107,7 +110,7 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		stack_a = ft_init_list(av);
-		stack_b = ft_init_list_b(ac);
+		stack_b = ft_init_list_b(ac, av);
 	}
 	else
 	{
@@ -115,6 +118,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 
+	pa(&stack_a, stack_b);
 	//AFFICHAGE STACK_A ET B
 	while (stack_a)
 	{

@@ -13,7 +13,7 @@
 #include "test.h"
 #include "libft/libft.h"
 
-void	sa(s_list *head)
+void	sa(s_list **head)
 {
 	int	tmp;
 
@@ -42,9 +42,11 @@ void	ss(s_list *head_a, s_list *head_b)
 {
 	sa(head_a);
 	sb(head_b);
+	ft_printf("ss\n");
 }
 
-void	pa(s_list *head_a, s_list *head_b)
+void	pa(s_list **head_a, s_list *head_b)
 {
-	
+	ft_lstaddfront(head_a, head_b);	
+	ft_printf("pa\n");
 }
