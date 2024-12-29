@@ -118,7 +118,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 
-	pa(&stack_a, stack_b);
+	sa(&stack_a);
 	//AFFICHAGE STACK_A ET B
 	while (stack_a)
 	{
