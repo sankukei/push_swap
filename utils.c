@@ -15,27 +15,32 @@
 
 void	sa(s_list **head)
 {
-	s_list	*tmp;
+	s_list	*tmp1;
+	s_list	*tmp2;
 
 	if (!head)
 		return ;
-	tmp = *head;
-	head = &(*head)->next;
-	(*head)->next = tmp;
+	tmp1 = *head;
+	tmp2 = (*head)->next; 
+	tmp1->next = tmp2->next;
+	(*head) = tmp2;
+	(*head)->next = tmp1;
 	ft_printf("sa\n");
 }
 
 void	sb(s_list **head)
 {
-	s_list	*tmp;
+	s_list	*tmp1;
+	s_list	*tmp2;
 
 	if (!head)
 		return ;
-	tmp = *head;
-	head = &(*head)->next;
-	(*head)->next = tmp;
+	tmp1 = *head;
+	tmp2 = (*head)->next; 
+	tmp1->next = tmp2->next;
+	(*head) = tmp2;
+	(*head)->next = tmp1;
 	ft_printf("sb\n");
-
 }
 
 void	ss(s_list **head_a, s_list **head_b)
@@ -47,7 +52,13 @@ void	ss(s_list **head_a, s_list **head_b)
 
 void	pa(s_list **head_a, s_list **head_b)
 {
-	ft_lstaddfront(head_a, *head_b);	
-	ft_printf("pa\n");
+//	s_list	*tmp;
+	ft_lstaddfront(head_a, *head_b);
+//	tmp = (*head_b)->next;
 
+	//free(*head_b);
+//	(*head_b)->next = 0;
+//	(*head_b) = 0;
+//	head_b = &tmp;
+	ft_printf("pa\n");
 }

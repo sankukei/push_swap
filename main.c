@@ -74,14 +74,13 @@ s_list	*ft_init_list(char **av)
 	return (list);
 }
 
-s_list	*ft_init_list_b(int ac, char **av)
+s_list	*ft_init_list_b(char **av)
 {
 	s_list	*list;
 	s_list	*tmp;
 	int	i;
 //	int	val;
 
-	ac++;
 	list = 0;
 	i = 0;
 	while (av[i])
@@ -103,6 +102,7 @@ int	main(int ac, char **av)
 {
 	int	i;
 	int	a = 1;
+
 	s_list *stack_a;
 	s_list *stack_b;
 	stack_a = 0;
@@ -110,16 +110,18 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		stack_a = ft_init_list(av);
-		stack_b = ft_init_list_b(ac, av);
+		stack_b = ft_init_list_b(av);
 	}
 	else
 	{
 		ft_printf("Error\n");
 		return (1);
 	}
-
-	sa(&stack_a);
+	//sa
+	//sb
+	//ss
 	//AFFICHAGE STACK_A ET B
+	pa(&stack_a, &stack_b);
 	while (stack_a)
 	{
 		int tmp = stack_a->content;
