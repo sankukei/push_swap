@@ -6,7 +6,7 @@
 /*   By: leothoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 18:15:57 by leothoma          #+#    #+#             */
-/*   Updated: 2024/12/28 18:15:57 by leothoma         ###   ########.fr       */
+/*   Updated: 2025/01/06 19:11:15 by leothoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ void	ss(s_list **head_a, s_list **head_b)
 
 void	pa(s_list **head_a, s_list **head_b)
 {
-//	s_list	*tmp;
-	ft_lstaddfront(head_a, *head_b);
-//	tmp = (*head_b)->next;
+	s_list	*tmp;
+	s_list	*tmp2;
+	
+	tmp = *head_a;
+	tmp2 = (*head_b)->next;
+	head_a = &*head_b;
+	(*head_a)->next = tmp;
+	head_b = &tmp2;
 
-	//free(*head_b);
-//	(*head_b)->next = 0;
-//	(*head_b) = 0;
-//	head_b = &tmp;
 	ft_printf("pa\n");
 }

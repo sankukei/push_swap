@@ -33,5 +33,4 @@ void	ft_lstaddback(s_list **lst, s_list *node);
 s_list	*ft_init_list(char **av);
 s_list	*ft_init_list_b(char **av);
 
-
 #endif

@@ -103,9 +103,12 @@ int	main(int ac, char **av)
 	int	i;
 	int	a = 1;
 
-	s_list *stack_a;
-	s_list *stack_b;
+	s_list	**head_a;
+	s_list	**head_b;
+	s_list	*stack_a;
+	s_list	*stack_b;
 	stack_a = 0;
+	stack_b = 0;
 	i = 1;
 	if (ac > 1)
 	{
@@ -117,17 +120,22 @@ int	main(int ac, char **av)
 		ft_printf("Error\n");
 		return (1);
 	}
+	head_a = &stack_a;
+	head_b = &stack_a;
 	//sa
 	//sb
 	//ss
 	//AFFICHAGE STACK_A ET B
-	pa(&stack_a, &stack_b);
-	while (stack_a)
+	pa(head_a, head_b);
+	int xd = 0;
+	while ((*head_a) && xd < 6)
 	{
-		int tmp = stack_a->content;
+		
+		int tmp = (*head_a)->content;
 		ft_printf("STACK A VALEUR [%d]: %d\n", a, tmp);
-		stack_a = stack_a->next;
+		*head_a = (*head_a)->next;
 		a++;
+		xd++;
 	}
 	ft_printf("\n");
 	a = 1;
