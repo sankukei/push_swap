@@ -130,7 +130,6 @@ int	main(int ac, char **av)
 	int xd = 0;
 	while ((*head_a) && xd < 6)
 	{
-		
 		int tmp = (*head_a)->content;
 		ft_printf("STACK A VALEUR [%d]: %d\n", a, tmp);
 		*head_a = (*head_a)->next;
