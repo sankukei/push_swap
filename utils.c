@@ -53,13 +53,11 @@ void	ss(s_list **head_a, s_list **head_b)
 void	pa(s_list **head_a, s_list **head_b)
 {
 	s_list	*tmp;
-	s_list	*tmp2;
-	
-	tmp = *head_a;
-	tmp2 = (*head_b)->next;
-	head_a = &*head_b;
-	(*head_a)->next = tmp;
-	head_b = &tmp2;
+
+	tmp = (*head_a)->next;
+	(*head_a)->next = *head_b;
+	head_b = &*head_a;
+	head_a = &tmp;
 
 	ft_printf("pa\n");
 }

@@ -79,14 +79,14 @@ s_list	*ft_init_list_b(char **av)
 	s_list	*list;
 	s_list	*tmp;
 	int	i;
-//	int	val;
+	int	val;
 
 	list = 0;
 	i = 0;
 	while (av[i])
 	{
-	//	val = ft_atoi(av[i]);
-		tmp = ft_new(i);
+		val = ft_atoi(av[i]);
+		tmp = ft_new(val);
 		if (!tmp)
 			return (NULL);
 		if (i == 1)
@@ -103,8 +103,6 @@ int	main(int ac, char **av)
 	int	i;
 	int	a = 1;
 
-	s_list	**head_a;
-	s_list	**head_b;
 	s_list	*stack_a;
 	s_list	*stack_b;
 	stack_a = 0;
@@ -120,21 +118,17 @@ int	main(int ac, char **av)
 		ft_printf("Error\n");
 		return (1);
 	}
-	head_a = &stack_a;
-	head_b = &stack_a;
 	//sa
 	//sb
 	//ss
 	//AFFICHAGE STACK_A ET B
-	pa(head_a, head_b);
-	int xd = 0;
-	while ((*head_a) && xd < 6)
+	pa(&stack_a, &stack_b);
+	while (stack_a)
 	{
-		int tmp = (*head_a)->content;
+		int tmp = stack_a->content;
 		ft_printf("STACK A VALEUR [%d]: %d\n", a, tmp);
-		*head_a = (*head_a)->next;
+		stack_a = stack_a->next;
 		a++;
-		xd++;
 	}
 	ft_printf("\n");
 	a = 1;
@@ -147,4 +141,3 @@ int	main(int ac, char **av)
 	}
 	return (0);
 }
-
