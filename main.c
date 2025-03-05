@@ -5,139 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: leothoma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/27 10:15:06 by leothoma          #+#    #+#             */
-/*   Updated: 2024/12/27 10:15:06 by leothoma         ###   ########.fr       */
+/*   Created: 2025/03/05 14:03:58 by leothoma          #+#    #+#             */
+/*   Updated: 2025/03/05 14:03:59 by leothoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
-#include "libft/libft.h"
+#include "header.h"
 
-s_list	*ft_new(int content)
+int	ft_atoi(const char *str)
 {
-	s_list *stack;
+	int	i;
+	int	res;
+	int	count;
+	int	neg;
 
-	stack = malloc(sizeof(s_list));
-	if (!stack)
-		return (NULL);
-	stack->content = content;
-	stack->next = NULL;
+	i = 0;
+	res = 0;
+	count = 0;
+	neg = 0;
+	while (((str[i] >= 9 && str[i] <= 13) || (str[i]) == 32))
+		i++;
+	while (str[i] == '+' || str[i] == '-')
+	{
+		count++;
+		if (str[i] == '-')
+			neg++;
+		if (count > 1)
+			return (0);
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		res = (res * 10) + str[i++] - 48;
+	if (neg % 2 == 1)
+		res *= -1;
+	return (res);
+}
+
+t_list	*init_stack(char **av)
+{
+	t_list *stack;
+	t_list *temp;
+	int	i;
+	
+	i = 1;
+	stack = 0;
+	while (av[i])
+	{
+		temp = ft_new(ft_atoi(av[i]));
+		temp->index = i;
+		if (!temp)
+			return (NULL);
+		if (i == 1)
+			stack = temp;
+		else
+			ft_lstaddback(&stack, temp);
+		i++;
+	}
+	//free(temp);
 	return (stack);
 }
 
-void	ft_lstaddfront(s_list **lst, s_list *new)
-{
-	new->next = *lst;
-	*lst = new;
-}
-
-void	ft_lstaddback(s_list **lst, s_list *new)
-{
-	s_list	*ptr;
-
-	if (!lst || !new)
-		return ;
-	ptr = *lst;
-	while (*lst && (*lst)->next)
-		*lst = (*lst)->next;
-	if (*lst)
-	{
-		(*lst)->next = new;
-		*lst = ptr;
-	}
-	else
-		*lst = new;
-}
-
-s_list	*ft_init_list(char **av)
-{
-	s_list	*list;
-	s_list	*tmp;
-	int	i;
-	int	val;
-
-	list = 0;
-	i = 1;
-	while (av[i])
-	{
-		val = ft_atoi(av[i]);
-		tmp = ft_new(val);
-		if (!tmp)
-			return (NULL);
-
-		if (i == 1)
-			list = tmp;
-		else
-			ft_lstaddback(&list, tmp);
-		i++;
-	}
-	return (list);
-}
-
-s_list	*ft_init_list_b(char **av)
-{
-	s_list	*list;
-	s_list	*tmp;
-	int	i;
-	int	val;
-
-	list = 0;
-	i = 0;
-	while (av[i])
-	{
-		val = ft_atoi(av[i]);
-		tmp = ft_new(val);
-		if (!tmp)
-			return (NULL);
-		if (i == 1)
-			list = tmp;
-		else
-			ft_lstaddback(&list, tmp);
-		i++;
-	}
-	return (list);
-}
-
 int	main(int ac, char **av)
-{
-	int	i;
-	int	a = 1;
+{	
+	t_list *stack_a;
+	t_list *stack_b;
 
-	s_list	*stack_a;
-	s_list	*stack_b;
 	stack_a = 0;
 	stack_b = 0;
-	i = 1;
 	if (ac > 1)
 	{
-		stack_a = ft_init_list(av);
-		stack_b = ft_init_list_b(av);
-	}
-	else
-	{
-		ft_printf("Error\n");
-		return (1);
-	}
-	//sa
-	//sb
-	//ss
-	//AFFICHAGE STACK_A ET B
-	pa(&stack_a, &stack_b);
-	while (stack_a)
-	{
-		int tmp = stack_a->content;
-		ft_printf("STACK A VALEUR [%d]: %d\n", a, tmp);
-		stack_a = stack_a->next;
-		a++;
-	}
-	ft_printf("\n");
-	a = 1;
-	while (stack_b)
-	{
-		int tmp = stack_b->content;
-		ft_printf("STACK B VALEUR [%d]: %d\n", a, tmp);
-		stack_b = stack_b->next;
-		a++;
+		stack_a = init_stack(av);
+		stack_b = init_stack(av);
+		// stack_b = init_stack(av);
+		pa(&stack_a, &stack_b);
+		printf("stack a\n");
+		while (stack_a)
+		{
+			printf("%d\n", stack_a->digit);
+		//	printf("%d\n", stack_a->index);
+			stack_a = stack_a->next;
+		}
+		printf("stack b\n");
+		while (stack_b)
+		{
+			printf("%d\n", stack_b->digit);
+		//	printf("%d\n", stack_a->index);
+			stack_b = stack_b->next;
+		}
+
 	}
 	return (0);
 }

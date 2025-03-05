@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: leothoma <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/27 14:55:10 by leothoma          #+#    #+#              #
-#    Updated: 2024/12/27 14:55:10 by leothoma         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = push_swap
 
 COMP = cc
@@ -18,6 +6,9 @@ FLAGS = -Wall -Wextra -Werror -g3 -I ./
 
 SRC =	main.c \
 	utils.c \
+	list_utils.c \
+	utils.c \
+	sort_functions.c \
 
 OBJS = ${SRC:.c=.o}
 
@@ -25,7 +16,7 @@ OBJS = ${SRC:.c=.o}
 	$(CC) $(FLAGS) -c $< -o $@
 
 ${NAME}: ${OBJS}
-	 cd libft && make && make bonus && cd ../ && $(CC) ${OBJS} -Llibft -lft -o $(NAME) && rm *.o
+	$(CC) ${OBJS} ${FLAGS} -o $(NAME) && rm *.o
 
 all: ${NAME}
 
