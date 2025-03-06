@@ -75,24 +75,24 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		stack_a = init_stack(av);
+		if (ac > 5)
+		{
+			//radix(stack_a, stack_b, ac);
+		}
 		// stack_b = init_stack(av);
-		// stack_b = init_stack(av);
-		ra(&stack_a);
+		rra(&stack_a);
 		printf("stack a\n");
 		while (stack_a)
 		{
 			printf("%d\n", stack_a->digit);
-		//	printf("%d\n", stack_a->index);
 			stack_a = stack_a->next;
 		}
 		printf("stack b\n");
 		while (stack_b)
 		{
 			printf("%d\n", stack_b->digit);
-		//	printf("%d\n", stack_a->index);
 			stack_b = stack_b->next;
 		}
-
 	}
 	return (0);
 }

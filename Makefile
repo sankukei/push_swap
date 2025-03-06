@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: leothoma <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/06 14:38:40 by leothoma          #+#    #+#              #
+#    Updated: 2025/03/06 14:38:41 by leothoma         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
 
 COMP = cc
@@ -9,6 +21,8 @@ SRC =	main.c \
 	list_utils.c \
 	utils.c \
 	sort_functions.c \
+	sort_functions1.c \
+	sort_functions2.c \
 
 OBJS = ${SRC:.c=.o}
 
