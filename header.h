@@ -33,6 +33,8 @@ void	sa(t_list **head);
 void	ft_lstaddfront(t_list **lst, t_list *new);
 void	ft_lstaddback(t_list **lst, t_list *new);
 void	pa(t_list **head_a, t_list **head_b);
+void	ra(t_list **head);
+
 
 
 #endif

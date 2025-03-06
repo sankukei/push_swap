@@ -75,9 +75,9 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		stack_a = init_stack(av);
-		stack_b = init_stack(av);
 		// stack_b = init_stack(av);
-		pa(&stack_a, &stack_b);
+		// stack_b = init_stack(av);
+		ra(&stack_a);
 		printf("stack a\n");
 		while (stack_a)
 		{
