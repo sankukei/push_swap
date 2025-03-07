@@ -50,7 +50,12 @@ void	push(t_list **receiving_stack, t_list **departure_stack)
 {
 	t_list *temp;
 	
+	//ici le segfault 
+	//peut etre bizzare 
+	if ( !*departure_stack || !((*departure_stack)->next))
+		return ;
 	temp = (*departure_stack)->next;
+	//
 	(*departure_stack)->next = *receiving_stack;
 	*receiving_stack = *departure_stack;
 	*departure_stack = temp;	

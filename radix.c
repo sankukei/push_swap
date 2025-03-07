@@ -49,19 +49,19 @@ void	radix(t_list **head_a, t_list **head_b, int ac)
 	i = 0;
 	y = 0;
 	while ((max_digit >> max_bits) != 0)
-		max_bits++;
+		++max_bits;
 	while (i++ < max_bits)
 	{
 		while (y++ < ac)
 		{
 			int num = (*head_a)->digit;
-			if ((num >> i) & (1 == 1))
+			if ((num >> i) & 1)
 				ra(head_a);
 			else
 				pb(head_a, head_b);
 		}
 		current = *head_b;
-		while (current)
+		while (current && current->next)
 		{
 			pb(head_a, head_b);
 			current = current->next;
