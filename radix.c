@@ -12,42 +12,59 @@
 
 #include "header.h"
 
-
-void	bubble_list(t_list **head)
+void	delete_negatives(t_list **head, int ac)
 {
-	int	sorted;
 	t_list	*current;
-	t_list	*test;
+	t_list	*ptr;
+	int	i;
 
-	sorted = 0;
 	current = *head;
-	while (sorted == 0)
+	while (ac-- && current)
 	{
-		sorted = 1;
-		while (current && current->next)
+		ptr = *head;
+		i = 0;
+		while (current && ptr)	
 		{
-			if ((int)current->digit > (int)current->next->digit)
-			{
-				swap(head);
-				sorted = 0;
-			}
+			if (current->digit > ptr->digit)
+				i++;
+			ptr = ptr->next;
+		}
+		current->index = i;
+		current = current->next;	
+	}
+}
+
+void	radix(t_list **head_a, t_list **head_b, int ac)
+{
+	int	i;
+	int	y;
+	int	max_digit;
+	int	max_bits;
+	t_list	*current;
+
+
+	delete_negatives(head_a, ac);	
+	max_digit = ac - 1;
+	max_bits = 0;
+	i = 0;
+	y = 0;
+	while ((max_digit >> max_bits) != 0)
+		max_bits++;
+	while (i++ < max_bits)
+	{
+		while (y++ < ac)
+		{
+			int num = (*head_a)->digit;
+			if ((num >> i) & (1 == 1))
+				ra(head_a);
+			else
+				pb(head_a, head_b);
+		}
+		current = *head_b;
+		while (current)
+		{
+			pb(head_a, head_b);
 			current = current->next;
 		}
 	}
 }
-
-// void	delete_negatives(t_list **head)
-// {
-// 	t_list	*current;
-
-// 	current = *head;
-// 	while (current && current->next)
-// 	{
-		
-// 	}
-// }
-
-// void	radix(t_list **head_a, t_list **head_b, int ac)
-// {
-		
-// }

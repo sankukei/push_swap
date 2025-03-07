@@ -15,13 +15,13 @@
 void	pa(t_list **head_a, t_list **head_b)
 {
 	push(head_a, head_b);
-	write(1,"pa", 1);
+	write(1,"pa\n", 3);
 }
 
 void	pb(t_list **head_a, t_list ** head_b)
 {
 	push(head_b, head_a);
-	write(1, "pb", 2);
+	write(1, "pb\n", 3);
 }
 
 void	rotate(t_list **head)
@@ -43,11 +43,11 @@ void	rotate(t_list **head)
 void	ra(t_list **head)
 {
 	rotate(head);
-	write(1, "ra", 2);
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_list **head)
 {
 	rotate(head);
-	write(1, "rb", 2);
+	write(1, "rb\n", 3);
 }

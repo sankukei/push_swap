@@ -77,10 +77,10 @@ int	main(int ac, char **av)
 		stack_a = init_stack(av);
 		if (ac > 5)
 		{
-			//radix(stack_a, stack_b, ac);
+			radix(&stack_a, &stack_b, ac);
 		}
 		// stack_b = init_stack(av);
-		rra(&stack_a);
+		// rra(&stack_a);
 		printf("stack a\n");
 		while (stack_a)
 		{

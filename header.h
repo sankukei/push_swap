@@ -33,9 +33,12 @@ void	sa(t_list **head);
 void	ft_lstaddfront(t_list **lst, t_list *new);
 void	ft_lstaddback(t_list **lst, t_list *new);
 void	pa(t_list **head_a, t_list **head_b);
+void	pb(t_list **head_a, t_list ** head_b);
 void	ra(t_list **head);
 void	rra(t_list **head);
+void	rotate(t_list **head);
 void	reverse_rotate(t_list **head);
 void	radix(t_list **head_a, t_list **head_b, int ac);
+void	push(t_list **receiving_stack, t_list **departure_stack);
 
 #endif

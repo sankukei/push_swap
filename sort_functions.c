@@ -51,7 +51,6 @@ void	push(t_list **receiving_stack, t_list **departure_stack)
 	t_list *temp;
 	
 	temp = (*departure_stack)->next;
-	
 	(*departure_stack)->next = *receiving_stack;
 	*receiving_stack = *departure_stack;
 	*departure_stack = temp;	

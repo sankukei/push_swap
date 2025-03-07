@@ -21,8 +21,9 @@ SRC =	main.c \
 	list_utils.c \
 	utils.c \
 	sort_functions.c \
-	sort_functions1.c \
-	sort_functions2.c \
+	sort_function2.c \
+	sort_functions3.c \
+	radix.c \
 
 OBJS = ${SRC:.c=.o}
 
