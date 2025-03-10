@@ -30,6 +30,8 @@ void	rotate(t_list **head)
 	t_list	*temp2;
 	t_list	*current;
 	
+	if((!*head) || (!(*head)->next))
+		return ;
 	temp1 = *head;
 	temp2 = (*head)->next;
 	current = *head;
@@ -42,6 +44,7 @@ void	rotate(t_list **head)
 
 void	ra(t_list **head)
 {
+	
 	rotate(head);
 	write(1, "ra\n", 3);
 }

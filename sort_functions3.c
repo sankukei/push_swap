@@ -14,9 +14,9 @@
 
 void	rr(t_list **head_a, t_list **head_b)
 {
+	write(1, "rr", 2);
 	rotate(head_a);
 	rotate(head_b);
-	write(1, "rr", 2);
 }
 
 void	reverse_rotate(t_list **head)
@@ -40,19 +40,19 @@ void	reverse_rotate(t_list **head)
 
 void	rra(t_list **head)
 {
-	reverse_rotate(head);
 	write(1, "rra", 3);
+	reverse_rotate(head);
 }
 
 void	rrb(t_list **head)
 {
-	reverse_rotate(head);
 	write(1, "rrb", 3);
+	reverse_rotate(head);
 }
 
 void	rrr(t_list **head_a, t_list **head_b)
 {
+	write(1, "rrr", 3);
 	reverse_rotate(head_a);
 	reverse_rotate(head_b);
-	write(1, "rrr", 3);
 }

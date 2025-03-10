@@ -18,8 +18,9 @@ void	delete_negatives(t_list **head, int ac)
 	t_list	*ptr;
 	int	i;
 
+	(void)ac;
 	current = *head;
-	while (ac-- && current)
+	while (current)
 	{
 		ptr = *head;
 		i = 0;
@@ -40,8 +41,7 @@ void	radix(t_list **head_a, t_list **head_b, int ac)
 	int	y;
 	int	max_digit;
 	int	max_bits;
-	t_list	*current;
-
+	int	num = 0;
 
 	delete_negatives(head_a, ac);	
 	max_digit = ac - 1;
@@ -50,21 +50,19 @@ void	radix(t_list **head_a, t_list **head_b, int ac)
 	y = 0;
 	while ((max_digit >> max_bits) != 0)
 		++max_bits;
-	while (i++ < max_bits)
+	while (i < max_bits)
 	{
-		while (y++ < ac)
+		y = 0;
+		while (++y < ac)
 		{
-			int num = (*head_a)->digit;
-			if ((num >> i) & 1)
+			num = (*head_a)->index;
+			if (((num >> i) & 1) == 1)
 				ra(head_a);
 			else
 				pb(head_a, head_b);
 		}
-		current = *head_b;
-		while (current && current->next)
-		{
-			pb(head_a, head_b);
-			current = current->next;
-		}
+		while (*head_b)
+			pa(head_a, head_b);
+		i++;
 	}
 }

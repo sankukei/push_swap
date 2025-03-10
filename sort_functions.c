@@ -28,21 +28,21 @@ void	swap(t_list **head)
 
 void	sa(t_list **head)
 {
-	swap(head);
 	write(1, "sa\n", 3);
+	swap(head);
 }
 
 void	sb(t_list **head)
 {
-	swap(head);
 	write(1, "sb\n", 3);
+	swap(head);
 }
 
 void	ss(t_list **head_a, t_list **head_b)
 {
+	write(1, "ss\n", 3);
 	swap(head_a);
 	swap(head_b);
-	write(1, "ss\n", 3);
 }
 
 
@@ -50,13 +50,12 @@ void	push(t_list **receiving_stack, t_list **departure_stack)
 {
 	t_list *temp;
 	
-	//ici le segfault 
-	//peut etre bizzare 
-	if ( !*departure_stack || !((*departure_stack)->next))
-		return ;
+	if (!*departure_stack)
+		return;
 	temp = (*departure_stack)->next;
-	//
 	(*departure_stack)->next = *receiving_stack;
 	*receiving_stack = *departure_stack;
-	*departure_stack = temp;	
+	*departure_stack = temp;
+
+ 
 }
