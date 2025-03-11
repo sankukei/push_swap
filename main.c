@@ -41,6 +41,12 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
+int	checker(int num)
+{
+	(void)num;	
+	return (1);
+}
+
 t_list	*init_stack(char **av, int start)
 {
 	t_list *stack;
@@ -49,7 +55,6 @@ t_list	*init_stack(char **av, int start)
 	int	count;
 	
 	i = start;
-
 	count = 0;
 	stack = 0;
 	while (av[i])
@@ -82,41 +87,22 @@ int	main(int ac, char **av)
 	t_list *stack_b;
 	char	**args;
 
-	int	i = 0;
 	stack_a = 0;
 	stack_b = 0;
+	if (ac == 1)
+		return (0);
 	if (ac > 1)
 	{
 		if (ac == 2)
 		{
 			args = ft_parse(av[1]);
-			while (args[i])
-			{
-				printf("%s\n", args[i]);
-				i++;
-			}
 			stack_a = init_stack(args, 0);
 		}
 		else
 			stack_a = init_stack(av, 1);
-		//radix(&stack_a, &stack_b, ac);
-		// stack_b = init_stack(av);
-		// rra(&stack_a);
-		 printf("stack a\n");
-
-		 while (stack_a)
-		 {
-		 	// printf("DIGIT : %d\n", stack_a->digit);
-		 	// printf("INDEX :%d\n", stack_a->index);
-		 	stack_a = stack_a->next;
-		 }
-		// printf("stack b\n");
-		// while (stack_b)
-		// {
-		// 	printf("DIGIT : %d\n", stack_a->digit);
-		// 	printf("INDEX :%d\n", stack_b->index);
-		// 	stack_b = stack_b->next;
-		// }
+		radix(&stack_a, &stack_b);
 	}
+	else
+		write(1, "error", 5);
 	return (0);
 }

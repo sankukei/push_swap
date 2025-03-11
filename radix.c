@@ -12,13 +12,12 @@
 
 #include "header.h"
 
-void	delete_negatives(t_list **head, int ac)
+void	delete_negatives(t_list **head)
 {
 	t_list	*current;
 	t_list	*ptr;
 	int	i;
 
-	(void)ac;
 	current = *head;
 	while (current)
 	{
@@ -35,34 +34,32 @@ void	delete_negatives(t_list **head, int ac)
 	}
 }
 
-void	radix(t_list **head_a, t_list **head_b, int ac)
+void	radix(t_list **head_a, t_list **head_b)
 {
-	int	i;
-	int	y;
-	int	max_digit;
-	int	max_bits;
-	int	num = 0;
+	t_vars v;
+	
+	v.i = 0;
+	v.y = 1;
+	v.max_digit = ft_lstsize(head_a);
+	v.max_bits = 1;
+	v.ac = ft_lstsize(head_a);
 
-	delete_negatives(head_a, ac);	
-	max_digit = ac - 1;
-	max_bits = 0;
-	i = 0;
-	y = 0;
-	while ((max_digit >> max_bits) != 0)
-		++max_bits;
-	while (i < max_bits)
+	delete_negatives(head_a);	
+	while ((v.max_digit >> v.max_bits) != 0)
+		v.max_bits++;
+	while (v.i < v.max_bits)
 	{
-		y = 0;
-		while (++y < ac)
+		v.y = 0;
+		while (v.y++ < v.ac)
 		{
-			num = (*head_a)->index;
-			if (((num >> i) & 1) == 1)
+			v.num = (*head_a)->index;
+			if (((v.num >> v.i) & 1) == 1)
 				ra(head_a);
 			else
 				pb(head_a, head_b);
 		}
 		while (*head_b)
 			pa(head_a, head_b);
-		i++;
+		v.i++;
 	}
 }

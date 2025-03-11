@@ -23,6 +23,15 @@ typedef struct s_list
 	void	*next;
 } t_list;
 
+typedef struct s_vars
+{
+	int	i;
+	int	y;
+	int	max_digit;
+	int	max_bits;
+	int	ac;
+	int	num;
+} t_vars;
 
 int	ft_atoi(const char *str);
 int	ft_lstsize(t_list **lst);
@@ -38,7 +47,7 @@ void	ra(t_list **head);
 void	rra(t_list **head);
 void	rotate(t_list **head);
 void	reverse_rotate(t_list **head);
-void	radix(t_list **head_a, t_list **head_b, int ac);
+void	radix(t_list **head_a, t_list **head_b); 
 void	push(t_list **receiving_stack, t_list **departure_stack);
 char	**ft_split(char const *s, char c);
 
