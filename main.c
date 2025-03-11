@@ -41,54 +41,75 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
-t_list	*init_stack(char **av)
+t_list	*init_stack(char **av, int start)
 {
 	t_list *stack;
 	t_list *temp;
 	int	i;
+	int	count;
 	
-	i = 1;
+	i = start;
+
+	count = 0;
 	stack = 0;
 	while (av[i])
 	{
 		temp = ft_new(ft_atoi(av[i]));
-		temp->index = i;
 		if (!temp)
 			return (NULL);
-		if (i == 1)
+		temp->index = i;
+		if (count == 0)
 			stack = temp;
 		else
 			ft_lstaddback(&stack, temp);
 		i++;
+		count++;
 	}
-	//free(temp);
 	return (stack);
+}
+
+char	**ft_parse(char *str)
+{
+	char	**res;
+
+	res = 0;
+	return (res = ft_split(str, ' '));
 }
 
 int	main(int ac, char **av)
 {	
 	t_list *stack_a;
 	t_list *stack_b;
+	char	**args;
 
+	int	i = 0;
 	stack_a = 0;
 	stack_b = 0;
 	if (ac > 1)
 	{
-		stack_a = init_stack(av);
-		if (ac > 5)
+		if (ac == 2)
 		{
-			radix(&stack_a, &stack_b, ac);
+			args = ft_parse(av[1]);
+			while (args[i])
+			{
+				printf("%s\n", args[i]);
+				i++;
+			}
+			stack_a = init_stack(args, 0);
 		}
+		else
+			stack_a = init_stack(av, 1);
+		//radix(&stack_a, &stack_b, ac);
 		// stack_b = init_stack(av);
 		// rra(&stack_a);
-		// printf("stack a\n");
+		 printf("stack a\n");
 
-		// while (stack_a)
-		// {
-		// 	// printf("DIGIT : %d\n", stack_a->digit);
-		// 	// printf("INDEX :%d\n", stack_a->index);
-		// 	stack_a = stack_a->next;
-		// }
+		 while (stack_a)
+		 {
+		 	// printf("DIGIT : %d\n", stack_a->digit);
+		 	// printf("INDEX :%d\n", stack_a->index);
+		 	stack_a = stack_a->next;
+		 }
 		// printf("stack b\n");
 		// while (stack_b)
 		// {

@@ -24,6 +24,7 @@ SRC =	main.c \
 	sort_function2.c \
 	sort_functions3.c \
 	radix.c \
+	ft_split.c \
 
 OBJS = ${SRC:.c=.o}
 
