@@ -16,35 +16,34 @@ void	delete_negatives(t_list **head)
 {
 	t_list	*current;
 	t_list	*ptr;
-	int	i;
+	int		i;
 
 	current = *head;
 	while (current)
 	{
 		ptr = *head;
 		i = 0;
-		while (current && ptr)	
+		while (current && ptr)
 		{
 			if (current->digit > ptr->digit)
 				i++;
 			ptr = ptr->next;
 		}
 		current->index = i;
-		current = current->next;	
+		current = current->next;
 	}
 }
 
 void	radix(t_list **head_a, t_list **head_b)
 {
-	t_vars v;
-	
+	t_vars	v;
+
 	v.i = 0;
 	v.y = 1;
 	v.max_digit = ft_lstsize(head_a);
 	v.max_bits = 1;
 	v.ac = ft_lstsize(head_a);
-
-	delete_negatives(head_a);	
+	delete_negatives(head_a);
 	while ((v.max_digit >> v.max_bits) != 0)
 		v.max_bits++;
 	while (v.i < v.max_bits)

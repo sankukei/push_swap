@@ -18,7 +18,7 @@ void	swap(t_list **head)
 	t_list	*tmp2;
 
 	if (!head)
-	 	return ;
+		return ;
 	tmp1 = *head;
 	tmp2 = (*head)->next;
 	tmp1->next = tmp2->next;
@@ -45,17 +45,14 @@ void	ss(t_list **head_a, t_list **head_b)
 	swap(head_b);
 }
 
-
 void	push(t_list **receiving_stack, t_list **departure_stack)
 {
-	t_list *temp;
-	
+	t_list	*temp;
+
 	if (!*departure_stack)
-		return;
+		return ;
 	temp = (*departure_stack)->next;
 	(*departure_stack)->next = *receiving_stack;
 	*receiving_stack = *departure_stack;
 	*departure_stack = temp;
-
- 
 }

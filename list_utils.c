@@ -14,7 +14,7 @@
 
 t_list	*ft_new(int digit)
 {
-	t_list *stack;
+	t_list	*stack;
 
 	stack = malloc(sizeof(t_list));
 	if (!stack)
@@ -48,10 +48,11 @@ void	ft_lstaddback(t_list **lst, t_list *new)
 		*lst = new;
 }
 
-int     ft_lstsize(t_list **lst)
+int	ft_lstsize(t_list **lst)
 {
-	int     i;
+	int		i;
 	t_list	*current;
+
 	i = 0;
 	current = *lst;
 	while (current)
@@ -61,4 +62,3 @@ int     ft_lstsize(t_list **lst)
 	}
 	return (i);
 }
-

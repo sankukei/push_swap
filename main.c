@@ -41,19 +41,32 @@ int	ft_atoi(const char *str)
 	return (res);
 }
 
-int	checker(int num)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	(void)num;	
-	return (1);
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	if (n == 0)
+		return (0);
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	while (n--)
+	{
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		str1++;
+		str2++;
+	}
+	return (0);
 }
 
 t_list	*init_stack(char **av, int start)
 {
-	t_list *stack;
-	t_list *temp;
-	int	i;
-	int	count;
-	
+	t_list	*stack;
+	t_list	*temp;
+	int		i;
+	int		count;
+
 	i = start;
 	count = 0;
 	stack = 0;
@@ -93,28 +106,31 @@ int	ft_strlen(char *str)
 
 int	is_digit(char c)
 {
-	if (c >= '0' && c <= '9')
+	if ((c >= '0' && c <= '9') || c == ' ' || c == '+' || c == '-')
 		return (1);
 	return (0);
 }
 
-int	no_doubles(char *str)
+int	no_doubles(char **av)
 {
 	int	i;
-	int	y;
+	int	j;
+	int	check;
 
 	i = 0;
-	y = 0;
-	while (str[i])
+	j = 0;
+	check = 0;
+	while (av[i])
 	{
-		y = 0;
-		while (str[y])
+		j = i + 1;
+		while (av[j] && av[j + 1])
 		{
-			y++;
-			if (str[i] == str[y])
+			check = ft_memcmp(av[i], av[j], ft_strlen(av[i]));
+			if (check == 0)
 				return (1);
+			j++;
 		}
- 		i++;
+		i++;
 	}
 	return (0);
 }
@@ -123,27 +139,22 @@ int	check_parsing(char **av)
 {
 	int	i;
 	int	y;
-	int	j;
 	int	count;
-	char	buffer[10000];
 
 	i = 1;
 	y = 0;
-	j = 0;
 	while (av[i])
 	{
 		while (av[i][y])
 		{
 			if (!is_digit(av[i][y]))
 				return (1);
-			buffer[j] = av[i][y];
 			y++;
-			j++;
 		}
 		i++;
 		y = 0;
 	}
-	count = no_doubles(buffer);
+	count = no_doubles(av);
 	if (count == 1)
 		return (1);
 	return (0);
@@ -151,10 +162,10 @@ int	check_parsing(char **av)
 
 int	main(int ac, char **av)
 {	
-	t_list *stack_a;
-	t_list *stack_b;
+	t_list	*stack_a;
+	t_list	*stack_b;
 	char	**args;
-	int	check;
+	int		check;
 
 	check = 0;
 	stack_a = 0;
