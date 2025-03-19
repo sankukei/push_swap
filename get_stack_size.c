@@ -14,10 +14,11 @@
 
 void	sort_2(t_list **head_a)
 {
-	if ((*head_a)->digit > (*head_a)->next->digit)
-		ra(head_a);
-	// if
-	// if
+	t_list	**ptr;
+
+	ptr = (*head_a)->next;
+	if ((*head_a)->digit > ptr->next)
+		sa(head_a);
 }
 
 void	sort_3(t_list **head_a)

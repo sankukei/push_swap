@@ -17,14 +17,13 @@ COMP = cc
 FLAGS = -Wall -Wextra -Werror -g3 -I ./
 
 SRC =	main.c \
-	utils.c \
 	list_utils.c \
-	utils.c \
 	sort_functions.c \
 	sort_function2.c \
 	sort_functions3.c \
 	radix.c \
 	ft_split.c \
+	get_stack_size.c \
 
 OBJS = ${SRC:.c=.o}
 

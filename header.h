@@ -49,6 +49,7 @@ void	rotate(t_list **head);
 void	reverse_rotate(t_list **head);
 void	radix(t_list **head_a, t_list **head_b);
 void	push(t_list **receiving_stack, t_list **departure_stack);
+void	sort_2(t_list **head_a);
 char	**ft_split(char const *s, char c);
 
 #endif
