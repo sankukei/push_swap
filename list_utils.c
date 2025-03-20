@@ -12,13 +12,31 @@
 
 #include "header.h"
 
+void	del(int *ptr)
+{
+	free(ptr);
+	ptr = 0;
+}
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	if (!*lst)
+		return ;
+	ft_lstclear(&(*lst)->next, del);
+	del((*lst)->digit);
+	free(*lst);
+	*lst = 0;
+}
+
 t_list	*ft_new(int digit)
 {
 	t_list	*stack;
 
 	stack = malloc(sizeof(t_list));
 	if (!stack)
+	{
 		return (NULL);
+	}
 	stack->digit = digit;
 	stack->next = NULL;
 	return (stack);

@@ -20,7 +20,7 @@ typedef struct s_list
 {
 	int		index;
 	int		digit;
-	void	*next;
+	struct s_list	*next;
 }	t_list;
 
 typedef struct s_vars
@@ -33,7 +33,7 @@ typedef struct s_vars
 	int	num;
 }	t_vars;
 
-int		ft_atoi(const char *str);
+long		ft_atoi(const char *str);
 int		ft_lstsize(t_list **lst);
 
 t_list	*ft_new(int digit);
@@ -50,6 +50,8 @@ void	reverse_rotate(t_list **head);
 void	radix(t_list **head_a, t_list **head_b);
 void	push(t_list **receiving_stack, t_list **departure_stack);
 void	sort_2(t_list **head_a);
+void	move_smallest(t_list **head_a);
+void	get_stack_size(t_list **head_a, t_list **head_b);
 char	**ft_split(char const *s, char c);
 
 #endif

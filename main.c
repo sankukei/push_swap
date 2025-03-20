@@ -12,10 +12,24 @@
 
 #include "header.h"
 
-int	ft_atoi(const char *str)
+int	is_sorted(t_list **head_a)
+{
+	t_list	*current;
+
+	current = *head_a;
+	while (current && current->next)
+	{
+		if (current->digit > current->next->digit)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
+
+long	ft_atoi(const char *str)
 {
 	int	i;
-	int	res;
+	long	res;
 	int	count;
 	int	neg;
 
@@ -74,7 +88,10 @@ t_list	*init_stack(char **av, int start)
 	{
 		temp = ft_new(ft_atoi(av[i]));
 		if (!temp)
+		{
+			ft_lstclear(&stack);
 			return (NULL);
+		}
 		temp->index = i;
 		if (count == 0)
 			stack = temp;
@@ -123,7 +140,7 @@ int	no_doubles(char **av)
 	while (av[i])
 	{
 		j = i + 1;
-		while (av[j] && av[j + 1])
+		while (av[j])
 		{
 			check = ft_memcmp(av[i], av[j], ft_strlen(av[i]));
 			if (check == 0)
@@ -140,14 +157,18 @@ int	check_parsing(char **av)
 	int	i;
 	int	y;
 	int	count;
+	long	temp;
 
-	i = 1;
+	i = 0;
 	y = 0;
 	while (av[i])
 	{
 		while (av[i][y])
 		{
 			if (!is_digit(av[i][y]))
+				return (1);
+			temp = ft_atoi(av[i]);
+			if ((temp > 2147483647) || (temp < -2147483648))
 				return (1);
 			y++;
 		}
@@ -170,6 +191,7 @@ int	main(int ac, char **av)
 	check = 0;
 	stack_a = 0;
 	stack_b = 0;
+	av++;
 	check = check_parsing(av);
 	if (ac == 1)
 		return (0);
@@ -182,7 +204,11 @@ int	main(int ac, char **av)
 		}
 		else
 			stack_a = init_stack(av, 1);
-		radix(&stack_a, &stack_b);
+		if (!(is_sorted(&stack_a)))
+		{
+			get_stack_size(&stack_a, &stack_b);
+			ft_lstclear(&stack_a);
+		}
 	}
 	else
 		write(1, "error", 5);

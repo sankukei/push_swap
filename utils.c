@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-void	move_smallest_to_top(t_list **head_a)
+void	move_smallest(t_list **head_a)
 {
 	t_list		*temp;
 	int			min_value;

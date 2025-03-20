@@ -47,7 +47,7 @@ void	sort_3(t_list **head_a)
 
 void	sort_4(t_list **head_a, t_list **head_b)
 {
-	move_smallest_to_top(head_a);
+	move_smallest(head_a);
 	pb(head_a, head_b);
 	sort_3(head_a);
 	pa(head_a, head_b);
@@ -55,7 +55,7 @@ void	sort_4(t_list **head_a, t_list **head_b)
 
 void	sort_5(t_list **head_a, t_list **head_b)
 {
-	move_smallest_to_top(head_a);
+	move_smallest(head_a);
 	pb(head_a, head_b);
 	sort_4(head_a, head_b);
 	pa(head_a, head_b);

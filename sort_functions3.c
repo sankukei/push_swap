@@ -40,7 +40,7 @@ void	reverse_rotate(t_list **head)
 
 void	rra(t_list **head)
 {
-	write(1, "rra", 3);
+	write(1, "rra\n", 4);
 	reverse_rotate(head);
 }
 

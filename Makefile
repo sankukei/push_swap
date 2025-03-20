@@ -24,6 +24,7 @@ SRC =	main.c \
 	radix.c \
 	ft_split.c \
 	get_stack_size.c \
+	utils.c \
 
 OBJS = ${SRC:.c=.o}
 
