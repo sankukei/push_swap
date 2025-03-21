@@ -14,16 +14,17 @@
 
 void	del(int *ptr)
 {
-	free(ptr);
-	ptr = 0;
+	(void)ptr;
+	//free(ptr);
+//	ptr = 0;
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst, void (*del)(int *))
 {
 	if (!*lst)
 		return ;
 	ft_lstclear(&(*lst)->next, del);
-	del((*lst)->digit);
+	del(&(*lst)->digit);
 	free(*lst);
 	*lst = 0;
 }

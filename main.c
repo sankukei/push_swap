@@ -89,7 +89,7 @@ t_list	*init_stack(char **av, int start)
 		temp = ft_new(ft_atoi(av[i]));
 		if (!temp)
 		{
-			ft_lstclear(&stack);
+			ft_lstclear(&stack, del);
 			return (NULL);
 		}
 		temp->index = i;
@@ -107,8 +107,8 @@ char	**ft_parse(char *str)
 {
 	char	**res;
 
-	res = 0;
-	return (res = ft_split(str, ' '));
+	res = ft_split(str, ' ');
+	return (res);
 }
 
 int	ft_strlen(char *str)
@@ -159,7 +159,7 @@ int	check_parsing(char **av)
 	int	count;
 	long	temp;
 
-	i = 0;
+	i = 1;
 	y = 0;
 	while (av[i])
 	{
@@ -191,7 +191,6 @@ int	main(int ac, char **av)
 	check = 0;
 	stack_a = 0;
 	stack_b = 0;
-	av++;
 	check = check_parsing(av);
 	if (ac == 1)
 		return (0);
@@ -207,7 +206,7 @@ int	main(int ac, char **av)
 		if (!(is_sorted(&stack_a)))
 		{
 			get_stack_size(&stack_a, &stack_b);
-			ft_lstclear(&stack_a);
+			ft_lstclear(&stack_a, del);
 		}
 	}
 	else
