@@ -70,7 +70,8 @@ int	no_doubles(char **av)
 		j = i + 1;
 		while (av[j])
 		{
-			check = ft_memcmp(av[i], av[j], ft_max(ft_strlen(av[j]), ft_strlen(av[i])));
+			check = ft_memcmp(av[i], av[j],
+					ft_max(ft_strlen(av[j]), ft_strlen(av[i])));
 			if (check == 0)
 				return (1);
 			j++;
@@ -86,14 +87,4 @@ char	**ft_parse(char *str)
 
 	res = ft_split(str, ' ');
 	return (res);
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }

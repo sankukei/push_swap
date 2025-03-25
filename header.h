@@ -35,6 +35,7 @@ typedef struct s_vars
 	int			min_value;
 	int			min_index;
 	int			size;
+	int			check;
 
 }	t_vars;
 

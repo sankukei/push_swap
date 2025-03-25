@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-static void init_vars(t_vars *vars, t_list **head_a, t_list *temp)
+static void	init_vars(t_vars *vars, t_list **head_a, t_list *temp)
 {
 	temp = *head_a;
 	vars->min_value = temp->digit;

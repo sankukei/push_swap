@@ -103,31 +103,29 @@ t_list	*init_stack(char **av, int start)
 	return (stack);
 }
 
-void	init_vars(t_vars *vars)
+void	init_vars(t_vars *vars, t_list **stack_a, t_list **stack_b)
 {
 	vars->min_value = 0;
 	vars->min_index = 0;
 	vars->size = 0;
 	vars->j = 0;
-
+	vars->check = 0;
+	*stack_a = 0;
+	*stack_b = 0;
 }
+
 int	main(int ac, char **av)
-{	
+{
 	t_list	*stack_a;
 	t_list	*stack_b;
 	t_vars	vars;
 	char	**args;
-	int		check;
-	
 
-	check = 0;
-	stack_a = 0;
-	stack_b = 0;
-	check = check_parsing(av);
-	init_vars(&vars);
+	vars.check = check_parsing(av);
+	init_vars(&vars, &stack_a, &stack_b);
 	if (ac == 1)
 		return (0);
-	if (ac > 1 && check == 0)
+	if (ac > 1 && vars.check == 0)
 	{
 		if (ac == 2)
 		{

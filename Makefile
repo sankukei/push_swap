@@ -27,6 +27,7 @@ SRC =	main.c \
 	utils.c \
 	list_utils2.c \
 	parsing.c \
+	parsing2.c \
 
 
 OBJS = ${SRC:.c=.o}
