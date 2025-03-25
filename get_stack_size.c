@@ -20,9 +20,9 @@ void	sort_2(t_list **head_a)
 
 void	sort_3(t_list **head_a)
 {
-	int a;
-	int b;
-	int c;
+	int	a;
+	int	b;
+	int	c;
 
 	a = (*head_a)->digit;
 	b = (*head_a)->next->digit;
@@ -45,23 +45,23 @@ void	sort_3(t_list **head_a)
 		rra(head_a);
 }
 
-void	sort_4(t_list **head_a, t_list **head_b)
+void	sort_4(t_list **head_a, t_list **head_b, t_vars *vars)
 {
-	move_smallest(head_a);
+	move_smallest(head_a, vars);
 	pb(head_a, head_b);
 	sort_3(head_a);
 	pa(head_a, head_b);
 }
 
-void	sort_5(t_list **head_a, t_list **head_b)
+void	sort_5(t_list **head_a, t_list **head_b, t_vars *vars)
 {
-	move_smallest(head_a);
+	move_smallest(head_a, vars);
 	pb(head_a, head_b);
-	sort_4(head_a, head_b);
+	sort_4(head_a, head_b, vars);
 	pa(head_a, head_b);
 }
 
-void	get_stack_size(t_list **head_a, t_list **head_b)
+void	get_stack_size(t_list **head_a, t_list **head_b, t_vars *vars)
 {
 	int	stack_size;
 
@@ -73,9 +73,9 @@ void	get_stack_size(t_list **head_a, t_list **head_b)
 	else if (stack_size == 3)
 		sort_3(head_a);
 	else if (stack_size == 4)
-		sort_4(head_a, head_b);
+		sort_4(head_a, head_b, vars);
 	else if (stack_size == 5)
-		sort_5(head_a, head_b);
+		sort_5(head_a, head_b, vars);
 	else
 		radix(head_a, head_b);
 }

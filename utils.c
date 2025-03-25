@@ -12,38 +12,40 @@
 
 #include "header.h"
 
-void	move_smallest(t_list **head_a)
+static void init_vars(t_vars *vars, t_list **head_a, t_list *temp)
+{
+	temp = *head_a;
+	vars->min_value = temp->digit;
+	vars->min_index = 0;
+	vars->j = 0;
+	vars->size = ft_lstsize(head_a);
+}
+
+void	move_smallest(t_list **head_a, t_vars *vars)
 {
 	t_list		*temp;
-	int			min_value;
-	int			min_index;
-	int			i;
-	int			size;
 
-	temp = *head_a;
-	min_value = temp->digit;
-	min_index = 0;
-	i = 0;
-	size = ft_lstsize(head_a);
+	temp = 0;
+	init_vars(vars, head_a, temp);
 	while (temp)
 	{
-		if (temp->digit < min_value)
+		if (temp->digit < vars->min_value)
 		{
-			min_value = temp->digit;
-			min_index = i;
+			vars->min_value = temp->digit;
+			vars->min_index = vars->j;
 		}
 		temp = temp->next;
-		i++;
+		vars->j++;
 	}
-	if (min_index <= size / 2)
+	if (vars->min_index <= vars->size / 2)
 	{
-		while (min_index--)
+		while (vars->min_index--)
 			ra(head_a);
 	}
 	else
 	{
-		min_index = size - min_index;
-		while (min_index--)
+		vars->min_index = vars->size - vars->min_index;
+		while (vars->min_index--)
 			rra(head_a);
 	}
 }

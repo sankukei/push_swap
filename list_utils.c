@@ -15,8 +15,6 @@
 void	del(int *ptr)
 {
 	(void)ptr;
-	//free(ptr);
-//	ptr = 0;
 }
 
 void	ft_lstclear(t_list **lst, void (*del)(int *))
@@ -65,19 +63,4 @@ void	ft_lstaddback(t_list **lst, t_list *new)
 	}
 	else
 		*lst = new;
-}
-
-int	ft_lstsize(t_list **lst)
-{
-	int		i;
-	t_list	*current;
-
-	i = 0;
-	current = *lst;
-	while (current)
-	{
-		current = current->next;
-		i++;
-	}
-	return (i);
 }

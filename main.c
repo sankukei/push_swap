@@ -28,10 +28,10 @@ int	is_sorted(t_list **head_a)
 
 long	ft_atoi(const char *str)
 {
-	int	i;
+	int		i;
 	long	res;
-	int	count;
-	int	neg;
+	int		count;
+	int		neg;
 
 	i = 0;
 	res = 0;
@@ -103,95 +103,28 @@ t_list	*init_stack(char **av, int start)
 	return (stack);
 }
 
-char	**ft_parse(char *str)
+void	init_vars(t_vars *vars)
 {
-	char	**res;
+	vars->min_value = 0;
+	vars->min_index = 0;
+	vars->size = 0;
+	vars->j = 0;
 
-	res = ft_split(str, ' ');
-	return (res);
 }
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	is_digit(char c)
-{
-	if ((c >= '0' && c <= '9') || c == ' ' || c == '+' || c == '-')
-		return (1);
-	return (0);
-}
-
-int	no_doubles(char **av)
-{
-	int	i;
-	int	j;
-	int	check;
-
-	i = 0;
-	j = 0;
-	check = 0;
-	while (av[i])
-	{
-		j = i + 1;
-		while (av[j])
-		{
-			check = ft_memcmp(av[i], av[j], ft_strlen(av[i]));
-			if (check == 0)
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	check_parsing(char **av)
-{
-	int	i;
-	int	y;
-	int	count;
-	long	temp;
-
-	i = 1;
-	y = 0;
-	while (av[i])
-	{
-		while (av[i][y])
-		{
-			if (!is_digit(av[i][y]))
-				return (1);
-			temp = ft_atoi(av[i]);
-			if ((temp > 2147483647) || (temp < -2147483648))
-				return (1);
-			y++;
-		}
-		i++;
-		y = 0;
-	}
-	count = no_doubles(av);
-	if (count == 1)
-		return (1);
-	return (0);
-}
-
 int	main(int ac, char **av)
 {	
 	t_list	*stack_a;
 	t_list	*stack_b;
+	t_vars	vars;
 	char	**args;
 	int		check;
+	
 
 	check = 0;
 	stack_a = 0;
 	stack_b = 0;
 	check = check_parsing(av);
+	init_vars(&vars);
 	if (ac == 1)
 		return (0);
 	if (ac > 1 && check == 0)
@@ -200,13 +133,15 @@ int	main(int ac, char **av)
 		{
 			args = ft_parse(av[1]);
 			stack_a = init_stack(args, 0);
+			free(args);
 		}
 		else
 			stack_a = init_stack(av, 1);
 		if (!(is_sorted(&stack_a)))
 		{
-			get_stack_size(&stack_a, &stack_b);
+			get_stack_size(&stack_a, &stack_b, &vars);
 			ft_lstclear(&stack_a, del);
+			ft_lstclear(&stack_b, del);
 		}
 	}
 	else

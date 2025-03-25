@@ -25,6 +25,9 @@ SRC =	main.c \
 	ft_split.c \
 	get_stack_size.c \
 	utils.c \
+	list_utils2.c \
+	parsing.c \
+
 
 OBJS = ${SRC:.c=.o}
 
@@ -32,7 +35,7 @@ OBJS = ${SRC:.c=.o}
 	$(CC) $(FLAGS) -c $< -o $@
 
 ${NAME}: ${OBJS}
-	$(CC) ${OBJS} ${FLAGS} -o $(NAME) && rm *.o
+	$(CC) ${OBJS} ${FLAGS} -o $(NAME)
 
 all: ${NAME}
 
