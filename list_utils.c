@@ -12,19 +12,23 @@
 
 #include "header.h"
 
-void	del(int *ptr)
+void	lst_clear(t_list **lst1, t_list **lst2)
 {
-	(void)ptr;
-}
+	t_list	*tmp;
 
-void	ft_lstclear(t_list **lst, void (*del)(int *))
-{
-	if (!*lst)
-		return ;
-	ft_lstclear(&(*lst)->next, del);
-	del(&(*lst)->digit);
-	free(*lst);
-	*lst = 0;
+	tmp = *lst1;
+	while (*lst1)
+	{
+		tmp = (*lst1)->next;
+		free(*lst1);
+		*lst1 = tmp;
+	}
+	while (*lst2)
+	{
+		tmp = (*lst2)->next;
+		free(*lst2);
+		*lst2 = tmp;
+	}
 }
 
 t_list	*ft_new(int digit)

@@ -36,6 +36,7 @@ typedef struct s_vars
 	int			min_index;
 	int			size;
 	int			check;
+	int			check1;
 
 }	t_vars;
 
@@ -58,8 +59,9 @@ void	push(t_list **receiving_stack, t_list **departure_stack);
 void	sort_2(t_list **head_a);
 void	move_smallest(t_list **head_a, t_vars *vars);
 void	get_stack_size(t_list **head_a, t_list **head_b, t_vars *vars);
-void	ft_lstclear(t_list **lst, void (*del)(int *));
-void	del(int *ptr);
+void	lst_clear(t_list **lst1, t_list **lst2);
+void	free_args(char **av);
+void	init_vars(t_vars *vars, t_list **stack_a, t_list **stack_b);
 char	**ft_split(char const *s, char c);
 char	**ft_parse(char *str);
 int		check_parsing(char **av);

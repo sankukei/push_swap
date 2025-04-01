@@ -88,10 +88,7 @@ t_list	*init_stack(char **av, int start)
 	{
 		temp = ft_new(ft_atoi(av[i]));
 		if (!temp)
-		{
-			ft_lstclear(&stack, del);
 			return (NULL);
-		}
 		temp->index = i;
 		if (count == 0)
 			stack = temp;
@@ -103,17 +100,6 @@ t_list	*init_stack(char **av, int start)
 	return (stack);
 }
 
-void	init_vars(t_vars *vars, t_list **stack_a, t_list **stack_b)
-{
-	vars->min_value = 0;
-	vars->min_index = 0;
-	vars->size = 0;
-	vars->j = 0;
-	vars->check = 0;
-	*stack_a = 0;
-	*stack_b = 0;
-}
-
 int	main(int ac, char **av)
 {
 	t_list	*stack_a;
@@ -121,28 +107,22 @@ int	main(int ac, char **av)
 	t_vars	vars;
 	char	**args;
 
-	vars.check = check_parsing(av);
 	init_vars(&vars, &stack_a, &stack_b);
-	if (ac == 1)
-		return (0);
-	if (ac > 1 && vars.check == 0)
+	vars.check = check_parsing(av);
+	args = ft_parse(av[1]);
+	vars.check1 = check_parsing(args);
+	if (ac > 1 && vars.check == 0 && vars.check1 == 0)
 	{
 		if (ac == 2)
-		{
-			args = ft_parse(av[1]);
 			stack_a = init_stack(args, 0);
-			free(args);
-		}
 		else
-			stack_a = init_stack(av, 1);
+		stack_a = init_stack(av, 1);
 		if (!(is_sorted(&stack_a)))
-		{
 			get_stack_size(&stack_a, &stack_b, &vars);
-			ft_lstclear(&stack_a, del);
-			ft_lstclear(&stack_b, del);
-		}
+		lst_clear(&stack_a, &stack_b);
 	}
 	else
-		write(1, "error", 5);
+		write(2, "error", 5);
+	free_args(args);
 	return (0);
 }

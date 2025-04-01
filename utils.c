@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-static void	init_vars(t_vars *vars, t_list **head_a, t_list *temp)
+void	init_vars_2(t_vars *vars, t_list **head_a, t_list *temp)
 {
 	temp = *head_a;
 	vars->min_value = temp->digit;
@@ -26,7 +26,7 @@ void	move_smallest(t_list **head_a, t_vars *vars)
 	t_list		*temp;
 
 	temp = 0;
-	init_vars(vars, head_a, temp);
+	init_vars_2(vars, head_a, temp);
 	while (temp)
 	{
 		if (temp->digit < vars->min_value)

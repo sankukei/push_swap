@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "header.h"
+
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -18,4 +20,26 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+void	free_args(char **av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+		free(av[i++]);
+	free(av);
+}
+
+void	init_vars(t_vars *vars, t_list **stack_a, t_list **stack_b)
+{
+	vars->min_value = 0;
+	vars->min_index = 0;
+	vars->size = 0;
+	vars->j = 0;
+	vars->check = 0;
+	vars->check1 = 0;
+	*stack_a = 0;
+	*stack_b = 0;
 }
