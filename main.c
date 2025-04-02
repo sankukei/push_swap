@@ -100,6 +100,12 @@ t_list	*init_stack(char **av, int start)
 	return (stack);
 }
 
+int	ft_free(char **av)
+{
+	free(av);
+	return(1);
+}
+
 int	main(int ac, char **av)
 {
 	t_list	*stack_a;
@@ -109,20 +115,22 @@ int	main(int ac, char **av)
 
 	init_vars(&vars, &stack_a, &stack_b);
 	vars.check = check_parsing(av);
-	args = ft_parse(av[1]);
-	vars.check1 = check_parsing(args);
-	if (ac > 1 && vars.check == 0 && vars.check1 == 0)
+	if (ac > 1)
 	{
-		if (ac == 2)
+		args = ft_parse(av[1]);
+		vars.check1 = check_parsing(args);
+		if (ac == 2 && !vars.check1)
 			stack_a = init_stack(args, 0);
+		else if (ac > 2 && !vars.check)
+			stack_a = init_stack(av, 1);
 		else
-		stack_a = init_stack(av, 1);
+			return (write(2, "error\n", 6), free_args(args));
 		if (!(is_sorted(&stack_a)))
 			get_stack_size(&stack_a, &stack_b, &vars);
 		lst_clear(&stack_a, &stack_b);
+		free_args(args);
 	}
-	else
-		write(2, "error", 5);
-	free_args(args);
+	if (vars.check == 1 || vars.check1 == 1)
+		return (write(1, "error\n", 6));
 	return (0);
 }

@@ -22,7 +22,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	free_args(char **av)
+int	free_args(char **av)
 {
 	int	i;
 
@@ -30,6 +30,7 @@ void	free_args(char **av)
 	while (av[i])
 		free(av[i++]);
 	free(av);
+	return (1);
 }
 
 void	init_vars(t_vars *vars, t_list **stack_a, t_list **stack_b)
