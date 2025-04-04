@@ -26,12 +26,12 @@ int	is_sorted(t_list **head_a)
 	return (1);
 }
 
-long	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	int		i;
-	long	res;
-	int		count;
-	int		neg;
+	int			i;
+	long long	res;
+	int			count;
+	int			neg;
 
 	i = 0;
 	res = 0;
@@ -98,12 +98,6 @@ t_list	*init_stack(char **av, int start)
 		count++;
 	}
 	return (stack);
-}
-
-int	ft_free(char **av)
-{
-	free(av);
-	return(1);
 }
 
 int	main(int ac, char **av)

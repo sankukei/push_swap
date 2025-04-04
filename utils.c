@@ -27,6 +27,8 @@ void	move_smallest(t_list **head_a, t_vars *vars)
 
 	temp = 0;
 	init_vars_2(vars, head_a, temp);
+	temp = *head_a;
+	vars->min_value = temp->digit;
 	while (temp)
 	{
 		if (temp->digit < vars->min_value)
@@ -37,15 +39,6 @@ void	move_smallest(t_list **head_a, t_vars *vars)
 		temp = temp->next;
 		vars->j++;
 	}
-	if (vars->min_index <= vars->size / 2)
-	{
-		while (vars->min_index--)
-			ra(head_a);
-	}
-	else
-	{
-		vars->min_index = vars->size - vars->min_index;
-		while (vars->min_index--)
-			rra(head_a);
-	}
+	while (vars->min_index--)
+		ra(head_a);
 }

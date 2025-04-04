@@ -44,3 +44,9 @@ void	init_vars(t_vars *vars, t_list **stack_a, t_list **stack_b)
 	*stack_a = 0;
 	*stack_b = 0;
 }
+
+int	ft_free(char **av)
+{
+	free(av);
+	return (1);
+}
